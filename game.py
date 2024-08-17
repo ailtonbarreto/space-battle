@@ -58,7 +58,7 @@ position_y_power = 300
 
 
 running = True
-points = 2
+points = 5
 trigged = False
 score_font = pg.font.SysFont('LeagueSpartan-Medium.ttf',60)
 
@@ -84,10 +84,10 @@ def reload_power():
 def colisions():
     global points
     if player_ret.colliderect(enemy_ret) or enemy_ret.x == 50:
-        points -= 1
+        points -= 5
         return True
     elif power_ret.colliderect(enemy_ret):
-        points += 1
+        points += 2
         return True
     else:
         return False
@@ -124,7 +124,7 @@ while running:
         trigged = True
         speed_x_power = 2
         
-    if points == -1:
+    if points < 0:
         running = False    
     
     
