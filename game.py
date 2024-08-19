@@ -44,8 +44,8 @@ power = pg.image.load('img\power.png')
 power = pg.transform.scale(power,(50,50))
 
 
-position_power_x = 100
-position_power_y = 425
+position_power_x = 110
+position_power_y = 400
 
 position_player_x = 100
 position_player_y = 400
@@ -58,13 +58,12 @@ position_enemy2_y = 350
 
 points = 28
 speed_x_power = 10
-position_x_power = 300
-position_y_power = 300
+
 
 running = True
 
 trigged = False
-score_font = pg.font.SysFont('LeagueSpartan-Medium.ttf',60)
+score_font = pg.font.SysFont('LeagueSpartan-Medium.ttf',60,)
 
 # ---------------------------------------------------------------------------
 #game running
@@ -84,7 +83,7 @@ def respawn():
 def reload_power():
     trigged = False
     reload_power_x = position_player_x 
-    reload_power_y = position_player_y + 21
+    reload_power_y = position_player_y + 26
     speed_x_power = 0
     return[reload_power_x,reload_power_y,trigged,speed_x_power]
 
@@ -195,9 +194,9 @@ while running:
     
 
     #move
-    x-= 5
-    position_enemy1_x -=1
-    position_enemy2_x -=1
+    x-= 2
+    position_enemy1_x -=1.3
+    position_enemy2_x -=1.25
     position_power_x += speed_x_power
     
 
@@ -214,6 +213,7 @@ while running:
     screen.blit(player, (position_player_x,position_player_y))
     screen.blit(enemy1, (position_enemy1_x,position_enemy1_y))
     screen.blit(enemy2, (position_enemy2_x,position_enemy2_y))
+
     
     # print(points) para conferir no terminal se esta funcionando
     # pg.display.update()
