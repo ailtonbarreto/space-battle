@@ -223,7 +223,6 @@ while running:
     screen.blit(player, (position_player_x,position_player_y))
     screen.blit(enemy1, (position_enemy1_x,position_enemy1_y))
     screen.blit(enemy2, (position_enemy2_x,position_enemy2_y))
-    # screen.blit(power,(position_power_x,position_power_y))
     
 
     # for event in pg.event.get():
