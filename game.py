@@ -18,6 +18,7 @@ x = 1280
 y = 720
 
 screen = pg.display.set_mode((x,y))
+fps = pg.time.Clock()
 
 # ---------------------------------------------------------------------------
 #window name
@@ -62,6 +63,7 @@ speed_x_power = 10
 
 
 running = True
+pause = False
 valueup = False
 valuedown = False
 trigged = False
@@ -116,10 +118,12 @@ def colisions2():
 #game running
 while running:
     for event in pg.event.get():
-        if event.type == pg.QUIT or joystick.get_button(6) :
+        if event.type == pg.QUIT or joystick.get_button(6) or joystick.get_button(8):
             running = False
             pg.quit()
             exit()
+        if event.type == joystick.get_button(9):
+            pause = True
         elif event.type == pg.JOYAXISMOTION:
             if event.value >= 0.5:
                 valuedown = True
@@ -159,7 +163,7 @@ while running:
         
     if points < 0:
         running = False    
-    
+
     
     #respawn enemy 1
     if position_enemy1_x == 20:
@@ -233,4 +237,5 @@ while running:
     
     # print(points) para conferir no terminal se esta funcionando
     # pg.display.update()
+    # fps.tick()
     pg.display.flip()
