@@ -28,7 +28,7 @@ pg.display.set_caption('Space Battle')
 
 # ---------------------------------------------------------------------------
 
-bg = pg.image.load('img/bg.jpg').convert_alpha()
+bg = pg.image.load('img/bg.png').convert_alpha()
 bg = pg.transform.scale(bg,(x,y))
 
 player = pg.image.load('img\player.png').convert_alpha()
@@ -67,7 +67,7 @@ pause = False
 valueup = False
 valuedown = False
 trigged = False
-score_font = pg.font.SysFont('LeagueSpartan-Medium.ttf',60)
+score_font = pg.font.SysFont('LeagueSpartan-Medium.ttf',40)
 
 # ---------------------------------------------------------------------------
 #game running
@@ -134,7 +134,16 @@ while running:
             else:
                 valueup = False
                 valuedown = False
-
+    if joystick.get_button(5):
+        enemy1 = pg.image.load('img\enemy.png').convert_alpha()
+        enemy1 = pg.transform.scale(enemy1,(100,100))
+        enemy2 = pg.image.load('img\enemy.png').convert_alpha()
+        enemy2 = pg.transform.scale(enemy2,(100,100))
+    if joystick.get_button(4):
+        enemy1 = pg.image.load('img\enemy1.png').convert_alpha()
+        enemy1 = pg.transform.scale(enemy1,(70,70))
+        enemy2 = pg.image.load('img\enemy2.png').convert_alpha()
+        enemy2 = pg.transform.scale(enemy2,(70,70))
 #-------------------------------------------------------------------------------------    
     rel_x = x % bg.get_rect().width
     screen.blit(bg,(rel_x - bg.get_rect().width,0))
@@ -156,15 +165,23 @@ while running:
             position_power_y +=1
     
     
-
-    if Key_board[pg.K_SPACE] or joystick.get_button(0) or joystick.get_button(5):
+    
+    if Key_board[pg.K_SPACE] or joystick.get_button(0):
         trigged = True
         speed_x_power = 5
         
     if points < 0:
         running = False    
 
-    
+    if points >= 100:
+        bg = pg.image.load('img/endstage.png').convert_alpha()
+        # bg = pg.transform.scale(bg,(x,y))
+        position_enemy1_x -= 0
+        position_enemy2_x -= 0
+        x = 0
+        points = 1000
+
+        
     #respawn enemy 1
     if position_enemy1_x == 20:
         position_enemy1_x = respawn()[0]
@@ -217,9 +234,9 @@ while running:
     # pg.draw.rect(screen,(255,0,0),player_ret,4)
     # pg.draw.rect(screen,(255,0,0),power_ret,4)
     # pg.draw.rect(screen,(255,0,0),enemy_ret,4)
-    
-    score = score_font.render(f'Score: {int(points)}',True,(255,255,255))
-    screen.blit(score,(50,50))
+    if points <= 100:
+        score = score_font.render(f'Score: {int(points)}',True,(255,255,255))
+        screen.blit(score,(20,5))
     
 
     #ploting images
@@ -234,8 +251,4 @@ while running:
     #         print(event)
     
     
-    
-    # print(points) para conferir no terminal se esta funcionando
-    # pg.display.update()
-    # fps.tick()
     pg.display.flip()
