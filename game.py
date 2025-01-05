@@ -7,7 +7,7 @@ import random as rd
 pg.init()
 pg.joystick.init()
 # joystick = [pg.joystick.Joystick(i) for i in range(pg.joystick.get_count())]
-joystick = pg.joystick.Joystick(0)
+# joystick = pg.joystick.Joystick(0)
 
 
 
@@ -31,18 +31,18 @@ pg.display.set_caption('Space Battle')
 bg = pg.image.load('img/bg.png').convert_alpha()
 bg = pg.transform.scale(bg,(x,y))
 
-player = pg.image.load('img\player.png').convert_alpha()
+player = pg.image.load('img/player.png').convert_alpha()
 player = pg.transform.scale(player,(100,100))
 player = pg.transform.rotate(player,-90)
 
-enemy1 = pg.image.load('img\enemy1.png').convert_alpha()
+enemy1 = pg.image.load('img/player1.png').convert_alpha()
 enemy1 = pg.transform.scale(enemy1,(70,70))
 
-enemy2 = pg.image.load('img\enemy2.png').convert_alpha()
+enemy2 = pg.image.load('img/enemy2.png').convert_alpha()
 enemy2 = pg.transform.scale(enemy2,(60,60))
 
 
-power = pg.image.load('img\power.png')
+power = pg.image.load('img/power.png')
 power = pg.transform.scale(power,(50,50))
 
 
@@ -59,7 +59,7 @@ position_enemy2_x = 450
 position_enemy2_y = 350
 
 points = 28
-speed_x_power = 10
+speed_x_power = 30
 
 
 running = True
@@ -118,11 +118,14 @@ def colisions2():
 #game running
 while running:
     for event in pg.event.get():
-        if event.type == pg.QUIT or joystick.get_button(6) or joystick.get_button(8):
+        # if event.type == pg.QUIT or joystick.get_button(6) or joystick.get_button(8):
+        if event.type == pg.QUIT:
+
             running = False
             pg.quit()
             exit()
-        if event.type == joystick.get_button(9):
+        # if event.type == joystick.get_button(9):
+
             pause = True
         elif event.type == pg.JOYAXISMOTION:
             if event.value >= 0.5:
@@ -134,16 +137,16 @@ while running:
             else:
                 valueup = False
                 valuedown = False
-    if joystick.get_button(5):
-        enemy1 = pg.image.load('img\enemy.png').convert_alpha()
-        enemy1 = pg.transform.scale(enemy1,(100,100))
-        enemy2 = pg.image.load('img\enemy.png').convert_alpha()
-        enemy2 = pg.transform.scale(enemy2,(100,100))
-    if joystick.get_button(4):
-        enemy1 = pg.image.load('img\enemy1.png').convert_alpha()
-        enemy1 = pg.transform.scale(enemy1,(70,70))
-        enemy2 = pg.image.load('img\enemy2.png').convert_alpha()
-        enemy2 = pg.transform.scale(enemy2,(70,70))
+    # if joystick.get_button(5):
+    #     enemy1 = pg.image.load('img\enemy.png').convert_alpha()
+    #     enemy1 = pg.transform.scale(enemy1,(100,100))
+    #     enemy2 = pg.image.load('img\enemy.png').convert_alpha()
+    #     enemy2 = pg.transform.scale(enemy2,(100,100))
+    # if joystick.get_button(4):
+    #     enemy1 = pg.image.load('img\enemy1.png').convert_alpha()
+    #     enemy1 = pg.transform.scale(enemy1,(70,70))
+    #     enemy2 = pg.image.load('img\enemy2.png').convert_alpha()
+    #     enemy2 = pg.transform.scale(enemy2,(70,70))
 #-------------------------------------------------------------------------------------    
     rel_x = x % bg.get_rect().width
     screen.blit(bg,(rel_x - bg.get_rect().width,0))
@@ -166,7 +169,9 @@ while running:
     
     
     
-    if Key_board[pg.K_SPACE] or joystick.get_button(0):
+    # if Key_board[pg.K_SPACE] or joystick.get_button(0):
+    if Key_board[pg.K_SPACE]:
+        
         trigged = True
         speed_x_power = 5
         
@@ -225,7 +230,7 @@ while running:
     
 
     #game speed
-    x-= 1
+    x-= 2
     position_enemy1_x -=1.3
     position_enemy2_x -=1.25
     position_power_x += speed_x_power
