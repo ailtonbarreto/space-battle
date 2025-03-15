@@ -15,7 +15,7 @@ pg.joystick.init()
 #screen size
 
 x = 1280
-y = 720
+y = 720 
 
 screen = pg.display.set_mode((x,y))
 fps = pg.time.Clock()
@@ -35,7 +35,7 @@ player = pg.image.load('img/player.png').convert_alpha()
 player = pg.transform.scale(player,(100,100))
 player = pg.transform.rotate(player,-90)
 
-enemy1 = pg.image.load('img/player1.png').convert_alpha()
+enemy1 = pg.image.load('img/enemy1.png').convert_alpha()
 enemy1 = pg.transform.scale(enemy1,(70,70))
 
 enemy2 = pg.image.load('img/enemy2.png').convert_alpha()
@@ -230,9 +230,9 @@ while running:
     
 
     #game speed
-    x-= 2
-    position_enemy1_x -=1.3
-    position_enemy2_x -=1.25
+    x-= 1
+    position_enemy1_x -=1.2
+    position_enemy2_x -=1.1
     position_power_x += speed_x_power
     
 
