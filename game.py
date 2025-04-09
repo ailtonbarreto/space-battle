@@ -230,9 +230,9 @@ while running:
     
 
     #game speed
-    x-= 1
-    position_enemy1_x -=1.2
-    position_enemy2_x -=1.1
+    x-= 0.57
+    position_enemy1_x -=0.75
+    position_enemy2_x -=0.65
     position_power_x += speed_x_power
     
 
