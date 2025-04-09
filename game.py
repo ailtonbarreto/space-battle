@@ -67,7 +67,7 @@ pause = False
 valueup = False
 valuedown = False
 trigged = False
-score_font = pg.font.SysFont('LeagueSpartan-Medium.ttf',40)
+# score_font = pg.font.SysFont('LeagueSpartan-Medium.ttf',40)
 
 # ---------------------------------------------------------------------------
 #game running
@@ -240,9 +240,9 @@ while running:
     # pg.draw.rect(screen,(255,0,0),power_ret,4)
     # pg.draw.rect(screen,(255,0,0),enemy_ret,4)
     if points <= 100:
-        score = score_font.render(f'Score: {int(points)}',True,(255,255,255))
-        screen.blit(score,(20,5))
-    
+        font = pg.font.Font(None, 36) 
+        score_surface = font.render(f'Score: {int(points)}', True, (255, 255, 255))
+        screen.blit(score_surface, (20, 5))
 
     #ploting images
     screen.blit(power,(position_power_x,position_power_y))
